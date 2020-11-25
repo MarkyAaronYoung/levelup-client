@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react"
+import React, { Fragment, useContext, useEffect } from "react"
 import { GameContext } from "./GameProvider.js"
 
 export const GameList = (props) => {
@@ -6,10 +6,18 @@ export const GameList = (props) => {
 
     useEffect(() => {
         getGames()
-    }, [getGames])
+    }, [])
 
     return (
         <article className="games">
+               <header className="games__header">
+                <h1>Level Up Games</h1>
+                <button className="btn btn-2 btn-sep icon-create"
+                    onClick={() => {
+                        props.history.push({ pathname: "/games/new" })
+                    }}
+                >Register New Game</button>
+            </header>
             {
                 games.map(game => {
                     return <section key={`game--${game.id}`} className="game">
